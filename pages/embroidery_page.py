@@ -7,12 +7,22 @@ class EmbroideryPage:
         self.driver = driver
         self.genre_filter = (By.XPATH, "//label[contains(text(), 'Городской пейзаж')]")
         self.apply_button = (By.XPATH, "//div[@class='seform']//button[text()='Применить']")
-        self.artwork_list = (By.XPATH, "//div[@id='sa_container']")
+        self.artwork_list = (By.XPATH, "//div[@id='sa_container']//div[@class='ssize']")
+        self.style_info = (By.XPATH, "//div[@class='infocontainer']//span[text()[contains(.,'Стиль')]]//../a")
 
     def select_genre_filter (self):
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.genre_filter)).click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.apply_button)).click()
 
+    def click_artwork (self, artwork_name):
+        artwork_card = (By.XPATH, f"//div[@id='sa_container']//div[text()='{artwork_name}']")
+        print (artwork_card)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(artwork_card)).click()
+
+    def get_style (self):
+        style = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.style_info))
+        return style.text
+
     def is_artwork_present (self, artwork_name):
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.artwork_list))
-        return artwork_name in self.driver.find_element(*self.artwork_list).text
+        elems = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.artwork_list)).find_elements(*self.artwork_list)
+        return any (artwork_name in el.text for el in elems)
