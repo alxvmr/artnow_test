@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
 class MainPage:
@@ -22,11 +24,11 @@ class MainPage:
 
     def go_to_batik (self):
         try:
-            self.driver.find_element (*self.show_all).click()  
+            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.show_all)).click()  
         except:
             pass
-
-        self.driver.find_element (*self.batik_link).click()
+        
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.batik_link)).click()
 
     def go_to_jewerly (self):
         try:
