@@ -13,7 +13,10 @@ class MainPage:
         self.jewerly_link = (By.XPATH, "//div[@class='main_menu']//li[a[text()=' Ювелирное искусство']]")
         self.search_input = (By.XPATH, "//span[@class='search-bar']//input[@name='qs']")
         self.show_all = (By.XPATH, "//li//span[text()='Показать еще...']") 
-        self.first_elem = (By.XPATH, "//div[@id='sa_container']//div[@class='post'][1]")     
+        self.first_elem = (By.XPATH, "//div[@id='sa_container']//div[@class='post'][1]")
+        self.basket_button = (By.XPATH, "//div[@id='sa_container']//div[@class='post'][1]//div[@class='oclick']")
+        self.id = (By.XPATH, ".//div[@class='heart']")
+        self.price = (By.XPATH, ".//div[@class='price']")
 
     def go_to_embroidery (self):
         try:
@@ -52,6 +55,12 @@ class MainPage:
     
     def get_header (self, elem):
         return elem.find_element(By.XPATH, ".//div[@class='ssize']").text
+
+    def get_artwork_id (self, elem):
+        return elem.find_element(*self.id).get_attribute("data-id")
+    
+    def get_price (self, elem):
+        return elem.find_element(*self.price).text
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
