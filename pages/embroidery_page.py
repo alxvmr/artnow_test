@@ -16,7 +16,6 @@ class EmbroideryPage:
 
     def click_artwork (self, artwork_name):
         artwork_card = (By.XPATH, f"//div[@id='sa_container']//div[text()='{artwork_name}']")
-        print (artwork_card)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(artwork_card)).click()
 
     def get_style (self):

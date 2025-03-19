@@ -12,7 +12,8 @@ class MainPage:
         self.batik_link = (By.XPATH, "//div[@class='main_menu']//li[a[text()=' Батик']]")
         self.jewerly_link = (By.XPATH, "//div[@class='main_menu']//li[a[text()=' Ювелирное искусство']]")
         self.search_input = (By.XPATH, "//span[@class='search-bar']//input[@name='qs']")
-        self.show_all = (By.XPATH, "//li//span[text()='Показать еще...']")      
+        self.show_all = (By.XPATH, "//li//span[text()='Показать еще...']") 
+        self.first_elem = (By.XPATH, "//div[@id='sa_container']//div[@class='post'][1]")     
 
     def go_to_embroidery (self):
         try:
@@ -45,6 +46,12 @@ class MainPage:
             pass
 
         self.driver.find_element (*self.search_input).send_keys (query + Keys.RETURN)
+
+    def get_first_elem (self):
+        return WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.first_elem))
+    
+    def get_header (self, elem):
+        return elem.find_element(By.XPATH, ".//div[@class='ssize']").text
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
