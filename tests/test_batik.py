@@ -25,7 +25,7 @@ def test_batik_favs (browser):
             if first_elem_header == batik_page.get_header (f):
                 is_here = True
                 break
-        assert is_here
+        assert is_here, "Item not in favorites"
 
     except Exception as e:
         allure.take_screenshot (driver, "Favorite picture")

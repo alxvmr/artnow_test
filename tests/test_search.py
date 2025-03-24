@@ -22,7 +22,7 @@ def test_search (browser):
         assert search_word in first_elem_header
 
     except Exception as e:
-        print (f"Header: {first_elem_header}")
+        print (f"Header: {first_elem_header}\n search word: {search_word}")
         allure.take_screenshot (driver, "Inconsistent search result")
         raise e
 

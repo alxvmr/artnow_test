@@ -39,10 +39,10 @@ def test_basket (browser):
 
     except Exception as e:
         if ch_elem == None:
-            print ("В корзине нет нужного элемента\n")
+            print ("There is no desired item in the cart\n")
             allure.take_screenshot (driver, "No element")
         else:
-            print (f"Стоимость товаров не совпадает: {first_elem_price} {basket_price}")
+            print (f"The cost of goods does not match: {first_elem_price} {basket_price}")
             allure.take_screenshot (driver, "Incorrect cost")
         raise e
 
