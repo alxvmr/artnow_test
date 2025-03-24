@@ -1,6 +1,7 @@
 from pages.main_page import MainPage
 from pages.basket_page import BasketPage
 from utils.driver import get_driver
+from utils import allure
 
 def test_basket (browser):
     driver = get_driver(browser)
@@ -34,8 +35,10 @@ def test_basket (browser):
     except Exception as e:
         if ch_elem == None:
             print ("В корзине нет нужного элемента\n")
+            allure.take_screenshot (driver, "No element")
         else:
             print (f"Стоимость товаров не совпадает: {first_elem_price} {basket_price}")
+            allure.take_screenshot (driver, "Incorrect cost")
         raise e
 
     finally:

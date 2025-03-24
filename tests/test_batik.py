@@ -1,6 +1,7 @@
 from pages.main_page import MainPage
 from pages.batik_page import BatikPage
 from utils.driver import get_driver
+from utils import allure
 
 def test_batik_favs (browser):
     driver = get_driver(browser)
@@ -23,7 +24,7 @@ def test_batik_favs (browser):
         assert is_here
 
     except Exception as e:
-        # сохранить скриншот
+        allure.take_screenshot (driver, "Favorite picture")
         raise e
 
     finally:

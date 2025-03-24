@@ -3,3 +3,4 @@ pytest
 pytest-html
 Pillow
 pytest-xdist
+allure-pytest

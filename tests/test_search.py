@@ -1,5 +1,6 @@
 from pages.main_page import MainPage
 from utils.driver import get_driver
+from utils import allure
 
 def test_search (browser):
     driver = get_driver(browser)
@@ -18,7 +19,7 @@ def test_search (browser):
 
     except Exception as e:
         print (f"Header: {first_elem_header}")
-        # сохранить скриншот
+        allure.take_screenshot (driver, "Inconsistent search result")
         raise e
 
     finally:
