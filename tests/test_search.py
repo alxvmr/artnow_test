@@ -3,6 +3,10 @@ from utils.driver import get_driver
 from utils import allure
 
 def test_search (browser):
+    """
+    Type “Жираф” into the search box, check that the title
+    of the first picture contains the word “Жираф”.
+    """
     driver = get_driver(browser)
     main_page = MainPage(driver)
 

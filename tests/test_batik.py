@@ -4,6 +4,10 @@ from utils.driver import get_driver
 from utils import allure
 
 def test_batik_favs (browser):
+    """
+    Go to “Батик”, add the first painting to favorites, check,
+    that the selected painting is saved in the “Избранное” section. 
+    """
     driver = get_driver(browser)
     main_page = MainPage(driver)
     batik_page = BatikPage(driver)

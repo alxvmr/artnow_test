@@ -5,6 +5,11 @@ from utils import allure
 
 # @pytest.mark.parametrize ("browser", ["chrome", "firefox"])
 def test_issuance_presence (browser):
+    """
+    Go to “Вышитые картины”, search by genre.
+    “Городской пейзаж”, check that the painting ”Трамвайный путь”
+    is present in the output. 
+    """
     driver = get_driver(browser)
     main_page = MainPage(driver)
     embroidery_page = EmbroideryPage(driver)
@@ -26,6 +31,11 @@ def test_issuance_presence (browser):
         driver.quit()
 
 def test_realism (browser):
+    """
+    Go to “Вышитые картины”, search by genre
+    “Городской пейзаж”, open the details of the painting ‘Трамвайный путь’,
+    check that the style of the painting is “Реализм”. 
+    """
     driver = get_driver(browser)
     driver.get("https://artnow.ru/")
 

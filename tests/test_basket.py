@@ -4,6 +4,11 @@ from utils.driver import get_driver
 from utils import allure
 
 def test_basket (browser):
+    """
+    Go to “Ювелирное искусство”, add the first item to the
+    cart, check that the selected item is in the cart, 
+    the cost of the item has not changed.
+    """
     driver = get_driver(browser)
     main_page = MainPage(driver)
     basket_page = BasketPage(driver)
