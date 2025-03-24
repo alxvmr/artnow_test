@@ -6,6 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 class MainPage:
+    """
+    Class for working with the main page
+    """
     def __init__ (self, driver):
         self.driver = driver
         self.embroidery_link = (By.XPATH, "//div[@class='main_menu']//li[a[text()=' Вышитые картины']]")
@@ -19,6 +22,9 @@ class MainPage:
         self.price = (By.XPATH, ".//div[@class='price']")
 
     def go_to_embroidery (self):
+        """
+        Go to the embroidery section
+        """
         try:
             self.driver.find_element (*self.show_all).click()  
         except:
@@ -27,6 +33,9 @@ class MainPage:
         self.driver.find_element (*self.embroidery_link).click()
 
     def go_to_batik (self):
+        """
+        Go to batik
+        """
         try:
             WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.show_all)).click()  
         except:
@@ -35,6 +44,9 @@ class MainPage:
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.batik_link)).click()
 
     def go_to_jewerly (self):
+        """
+        Jump to Jewelry Art
+        """
         try:
             self.driver.find_element (*self.show_all).click()  
         except:
@@ -43,6 +55,9 @@ class MainPage:
         self.driver.find_element (*self.jewerly_link).click()
 
     def search (self, query):
+        """
+        Search the site
+        """
         try:
             self.driver.find_element (*self.show_all).click()  
         except:
@@ -51,15 +66,27 @@ class MainPage:
         self.driver.find_element (*self.search_input).send_keys (query + Keys.RETURN)
 
     def get_first_elem (self):
+        """
+        Get the first element
+        """
         return WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.first_elem))
     
     def get_header (self, elem):
+        """
+        Get header
+        """
         return elem.find_element(By.XPATH, ".//div[@class='ssize']").text
 
     def get_artwork_id (self, elem):
+        """
+        Get product id
+        """
         return elem.find_element(*self.id).get_attribute("data-id")
     
     def get_price (self, elem):
+        """
+        Get price
+        """
         return elem.find_element(*self.price).text
 
 if __name__ == "__main__":
