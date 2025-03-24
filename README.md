@@ -3,6 +3,7 @@ Testing of the site [artnow.ru](https://artnow.ru/)
 # Setting up the environment
 First you need to activate the python environment:
 ```
+python -m venv artnow_venv
 .\artnow_venv\Scripts\activate
 ```
 and establish the necessary dependencies:
